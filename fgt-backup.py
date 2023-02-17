@@ -16,6 +16,8 @@ DATE = datetime.now().strftime('%m-%d-%Y')      # Today's date in the format mm-
 CURRENT_DIR = os.path.dirname(os.path.realpath(__file__))   # Path to the directory where this script is located
 BKP_FOLDER = os.path.join(CURRENT_DIR, 'backups', DATE)     # Path to the backups folder
 LOGS_FOLDER = os.path.join(CURRENT_DIR, 'logs')     # Path to the logs folder
+online_ip = ''
+error_message = ''
 
 def main():
 
@@ -31,18 +33,42 @@ def main():
 
     # Backup each Fortigate
     for fgt in fortigates:
+
+        # Clear error_message variable before each backup
+        global error_message
+        error_message = ''
+        
         print('\n========================================')
         print(f'Fortigate: {fgt["name"]}')
+
+        log.write('\n========================================\n')
+        log.write(f'Fortigate: {fgt["name"]}\n')
         
         # Call the main backup function
         bkp_ok = backup(fgt)
 
-        log.write('\nBackup successful!\n') if bkp_ok else log.write('\nBackup failed!\n')
+        # Check if the backup was successful
+        if bkp_ok:
+            print('Backup successful!')
+            log.write(f'Fortigate online on IP: {online_ip}\n')
+            log.write('Backup successful!\n')
+
+        # If not, check if the Fortigate is offline or if there was an error
+        else:
+            if online_ip == '':
+                print('Fortigate offline!')
+                log.write('Fortigate offline!\n')
+
+            elif error_message != '':
+                print(f'Error message: {error_message}')
+                log.write(f'Error message: {error_message}\n')
+
+            print('Backup failed!')
+            log.write('Backup failed!\n')
+
+        print('========================================\n')
         log.write('========================================\n')
-        log.write(f'Fortigate: {fgt["name"]}\n')
-        log.write(f'Date: {DATE}\n')
-        log.write('========================================\n')
-    
+        
     log.close()
     print('Backup finished!')
     input('Press ENTER to exit...')
@@ -87,25 +113,19 @@ def backup(fgt):
 
     # Mount the backup URL
     url = mount_url(fgt)
-    if not url:
-        print('Fortigate offline!')
-        print('========================================\n')
-        return False
+    if not url: return False
 
     # Perform the backup
-    print('Fortigate online, backing up...')
+    print(f'Fortigate online on {online_ip}, backing up...')
     try:
         bkp_data = req.get(url)
     except Exception as e:
-        print(f'Backup failed: {e}')
-        print('========================================\n')
+        global error_message
+        error_message = str(e)
         return False
 
     # Save and check the backup file
     file_ok = save_and_check_file(fgt['name'], bkp_data)
-    
-    print('Backup successful!') if file_ok else print('Backup failed!')
-    print('========================================\n')
     return file_ok
 
 def ping(ip):
@@ -119,15 +139,21 @@ def ping(ip):
 
 def check_online_ip(fgt):
 
+    # Access the global variable online_ip
+    global online_ip
+
     # Check if the Fortigate is online on primary IP
     if ping(fgt['ip_1']):
-        return fgt["ip_1"]
+        online_ip = fgt['ip_1']
+        return online_ip
     
     # If not, check if the Fortigate has a secondary IP and if it is online
     elif fgt['ip_2'] != '' and ping(fgt['ip_2']):
-        return fgt["ip_2"]
+        online_ip = fgt['ip_2']
+        return online_ip
     
     # If the Fortigate is not available on any IP, return False
+    online_ip = ''
     return False
 
 def mount_url(fgt):
@@ -141,9 +167,12 @@ def mount_url(fgt):
         # If it is online, mount the URL to backup the Fortigate
         return f'https://{is_online}{URI}{fgt["token"]}'
     else:
-        return False
+        return ''
     
 def save_and_check_file(name, data):
+
+    # Access the global variable error_message
+    global error_message
 
     # Path to the backup file
     file_path = os.path.join(BKP_FOLDER, f'{name}-bkp-{DATE}.conf')
@@ -157,10 +186,14 @@ def save_and_check_file(name, data):
         # Check if the file is a valid Fortigate configuration file
         with open(file_path, 'r') as file:
             first_line = file.readline()
-            return first_line.startswith('#config')
+            if first_line.startswith('#config'):
+                return True
+            else:
+                error_message = 'Invalid backup file'
+                return False
     
     except Exception as e:
-        print(f'Error saving backup file: {e}')
+        error_message = str(e)
         return False
         
 if __name__ == '__main__':
