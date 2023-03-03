@@ -5,21 +5,21 @@ This simple script makes it easy to perform backups of multiple Fortigate firewa
 
 ## Summary
 
-- [Installation](https://github.com/mcarneir0/fortigate-backup-api/edit/main/README.md#installation)
-- [Usage](https://github.com/mcarneir0/fortigate-backup-api/edit/main/README.md#usage)
-- [Configuration](https://github.com/mcarneir0/fortigate-backup-api/edit/main/README.md#configuration)
-  - [CSV file](https://github.com/mcarneir0/fortigate-backup-api/edit/main/README.md#csv-file-format)
-  - [SSL certificate](https://github.com/mcarneir0/fortigate-backup-api/edit/main/README.md#ssl-certificate-warnings)
-  - [Folders](https://github.com/mcarneir0/fortigate-backup-api/edit/main/README.md#folder-structure)
-- [Generating API key](https://github.com/mcarneir0/fortigate-backup-api/edit/main/README.md#generating-the-api-key)
-  1. [Access the firewall](https://github.com/mcarneir0/fortigate-backup-api/edit/main/README.md#1-access-the-firewall)
-  2. [Temp profile](https://github.com/mcarneir0/fortigate-backup-api/edit/main/README.md#2-create-a-temporary-admin-profile)
-  3. [Create REST API user](https://github.com/mcarneir0/fortigate-backup-api/edit/main/README.md#3-create-a-new-rest-api-admin)
-     - [Trusted hosts warning](https://github.com/mcarneir0/fortigate-backup-api/edit/main/README.md#warning)
-  4. [_Super_admin_ permission](https://github.com/mcarneir0/fortigate-backup-api/edit/main/README.md#4-grant-super_admin-permissions-to-the-user)
-- [Environment](https://github.com/mcarneir0/fortigate-backup-api/edit/main/README.md#environment)
-- [References](https://github.com/mcarneir0/fortigate-backup-api/edit/main/README.md#references)
-- [License](https://github.com/mcarneir0/fortigate-backup-api/edit/main/README.md#license)
+- [Installation](https://github.com/mcarneir0/fortigate-backup-api#installation)
+- [Usage](https://github.com/mcarneir0/fortigate-backup-api#usage)
+- [Configuration](https://github.com/mcarneir0/fortigate-backup-api#configuration)
+  - [CSV file](https://github.com/mcarneir0/fortigate-backup-api#csv-file-format)
+  - [SSL certificate](https://github.com/mcarneir0/fortigate-backup-api#ssl-certificate-warnings)
+  - [Folders](https://github.com/mcarneir0/fortigate-backup-api#folder-structure)
+- [Generating API key](https://github.com/mcarneir0/fortigate-backup-api#generating-the-api-key)
+  1. [Access the firewall](https://github.com/mcarneir0/fortigate-backup-api#1-access-the-firewall)
+  2. [Temp profile](https://github.com/mcarneir0/fortigate-backup-api#2-create-a-temporary-admin-profile)
+  3. [Create REST API user](https://github.com/mcarneir0/fortigate-backup-api#3-create-a-new-rest-api-admin)
+     - [Trusted hosts warning](https://github.com/mcarneir0/fortigate-backup-api#warning)
+  4. [_Super_admin_ permission](https://github.com/mcarneir0/fortigate-backup-api#4-grant-super_admin-permissions-to-the-user)
+- [Environment](https://github.com/mcarneir0/fortigate-backup-api#environment)
+- [References](https://github.com/mcarneir0/fortigate-backup-api#references)
+- [License](https://github.com/mcarneir0/fortigate-backup-api#license)
 
 
 ## Installation
@@ -64,8 +64,9 @@ The `fortigates.csv` file should have the following format:
 ```csv
 name,ip_1,ip_2,token
 Fortigate1,192.168.1.1,,xxxxxxxxxxxxxxxxx
-Fortigate2,10.0.0.1:9999,10.0.0.2:9999,yyyyyyyyyyyyyyyyy
+Fortigate2,10.0.0.1:9999,myfortigate.fortiddns.com:9999,yyyyyyyyyyyyyyyyy
 ```
+> FQDN addresses can be used too!
 
 Where:
 
