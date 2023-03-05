@@ -16,8 +16,8 @@ DATE = datetime.now().strftime('%m-%d-%Y')      # Today's date in the format mm-
 CURRENT_DIR = os.path.dirname(os.path.realpath(__file__))   # Path to the directory where this script is located
 BKP_FOLDER = os.path.join(CURRENT_DIR, 'backups', DATE)     # Path to the backups folder
 LOGS_FOLDER = os.path.join(CURRENT_DIR, 'logs')     # Path to the logs folder
-online_ip = ''
-error_message = ''
+online_ip, error_message = '',''
+bkp_fail = []
 
 def main():
 
@@ -65,10 +65,22 @@ def main():
 
             print('Backup failed!')
             log.write('Backup failed!\n')
+            bkp_fail.append(fgt['name'])
 
         print('========================================\n')
         log.write('========================================\n')
+    
+    # Print the list of failed backups if there are any
+    if len(bkp_fail) > 0:
+        print('List of failed backups:')
+        log.write('\nList of failed backups:\n')
+        for fgt in bkp_fail:
+            print(fgt)
+            log.write(f'{fgt}\n')
         
+        print(f'\nCount: {len(bkp_fail)}\n')
+        log.write(f'\nCount: {len(bkp_fail)}\n')
+
     log.close()
     print('Backup finished!')
     input('Press ENTER to exit...')
