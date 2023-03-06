@@ -200,9 +200,11 @@ def save_and_check_file(name, data):
             first_line = file.readline()
             if first_line.startswith('#config'):
                 return True
-            else:
-                error_message = 'Invalid backup file'
-                return False
+        
+        # If the file is not valid, delete it and change the error_message variable
+        os.remove(file_path)
+        error_message = 'Invalid backup file'
+        return False
     
     except Exception as e:
         error_message = str(e)
