@@ -26,7 +26,7 @@ This simple script makes it easy to perform backups of multiple Fortigate firewa
 
 #### Requirements
 
-- [Python 3.7](https://www.python.org/downloads/) or newer
+- [Python 3.6](https://www.python.org/downloads/) or newer
 - [Requests](https://pypi.org/project/requests/) module
 
 Clone the project
@@ -161,7 +161,9 @@ Now close the CLI, delete the temporary user profile and you're good to go.
 Tested with:
 
 - Windows 11
-- Python 3.10.9
+- Ubuntu 22.04.2 LTS
+- CentOS 7
+- Python 3.11.2 / 3.11.1 / 3.10.9 / 3.10.6 / 3.6.8
 - FortiOS 6.0.x / 6.2.x / 7.0.x / 7.2.x
 
 ## References
