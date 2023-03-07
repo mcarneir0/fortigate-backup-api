@@ -94,9 +94,11 @@ def read_fortigates():
             fortigates = list(csv.DictReader(file, delimiter=','))
     except FileNotFoundError as e:
         print(f'File fortigates.csv not found: {e}')
+        input('Press ENTER to exit...')
         sys.exit()
     except Exception as e:
         print(f'Error reading fortigates.csv file: {e}')
+        input('Press ENTER to exit...')
         sys.exit()
 
     return fortigates
@@ -110,6 +112,7 @@ def create_folders():
         os.makedirs(LOGS_FOLDER, exist_ok=True)
     except Exception as e:
         print(f'Error creating folders: {e}')
+        input('Press ENTER to exit...')
         sys.exit()
 
 def create_log():
@@ -119,6 +122,7 @@ def create_log():
         return open(os.path.join(LOGS_FOLDER, f'bkp-{DATE}.log'), 'a')
     except Exception as e:
         print(f'Error creating the log file: {e}')
+        input('Press ENTER to exit...')
         sys.exit()
 
 def backup(fgt):
