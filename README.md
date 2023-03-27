@@ -49,10 +49,15 @@ pip install -r requirements.txt
 
 ## Usage
 
-1. Add the details of each Fortigate to backup in the `fortigates.csv` file.
-2. Run the script.
+Add the details of each Fortigate to backup in the `fortigates.csv` file and then you can perform the backup by two ways:
+
+1. Run the `fgt-backup.py` file to perform a backup of all Fortigates without user input. Useful for use with cron job or scheduled tasks.
     ```bash
     python fgt-backup.py
+    ```
+2. Run the `manual-backup.py` file to display a list with all Fortigates and then select which Fortigates will be backed up.
+    ```bash
+    python manual-backup.py
     ```
 
 ## Configuration
