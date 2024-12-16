@@ -3,9 +3,8 @@
 
 This simple script makes it easy to perform backups of multiple Fortigate firewalls. It reads a list of Fortigates from a CSV file, performs a backup of each one, and saves the backup file to a local directory.
 
-Forked from https://github.com/mcarneir0/fortigate-backup-api
-
-Changelog: 10/12/2024 - updated to utiilise authorisation bearer header instead of old method of inserting API key into URL - reference: https://community.fortinet.com/t5/FortiGate/Technical-Tip-Configuring-FortiGate-7-4-5-to-Allow-access-token/ta-p/357228
+Changelog: 10/12/2024 - updated to utilise authorisation bearer header instead of old method of inserting API key into URL - reference: https://community.fortinet.com/t5/FortiGate/Technical-Tip-Configuring-FortiGate-7-4-5-to-Allow-access-token/ta-p/357228
+(Thanks to [@wintermute000](https://github.com/wintermute000)) 
 
 ## Summary
 
