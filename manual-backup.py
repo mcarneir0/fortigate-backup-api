@@ -181,7 +181,10 @@ def backup(fgt):
     # Perform the backup
     print(f'Fortigate online on {online_ip}, performing backup...')
     try:
-        bkp_data = req.get(url)
+
+        bkp_data = req.get(url, headers={'Authorization' : 'Bearer ' + str(fgt["token"])})
+        print(bkp_data)
+
     except Exception as e:
         global error_message
         error_message = str(e)
@@ -222,13 +225,13 @@ def check_online_ip(ip_1, ip_2):
 def mount_url(fgt):
 
     # URI to backup the Fortigate
-    URI = '/api/v2/monitor/system/config/backup?scope=global&access_token='
+    URI = '/api/v2/monitor/system/config/backup?scope=global'
 
     # Check if the Fortigate is online on both IPs
     is_online = check_online_ip(fgt['ip_1'], fgt['ip_2'])
     if is_online:
         # If it is online, mount the URL to backup the Fortigate
-        return f'https://{is_online}{URI}{fgt["token"]}'
+        return f'https://{is_online}{URI}'
     else:
         return ''
     
