@@ -182,7 +182,7 @@ def backup(fgt):
     print(f'Fortigate online on {online_ip}, performing backup...')
     try:
 
-        bkp_data = req.get(url, headers={'Authorization' : 'Bearer ' + str(fgt["token"])})
+        bkp_data = req.post(url, headers={'Authorization' : 'Bearer ' + str(fgt["token"])})
         print(bkp_data)
 
     except Exception as e:
