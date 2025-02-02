@@ -171,7 +171,7 @@ Tested with:
 - Windows 11
 - Ubuntu 22.04.2 LTS
 - CentOS 7
-- Python 3.11.2 / 3.11.1 / 3.10.9 / 3.10.6 / 3.6.8
+- Python 3.6.8 / 3.10.x / 3.11.x / 3.12.x
 - FortiOS 6.0.x / 6.2.x / 7.0.x / 7.2.x / 7.4.5 / 7.6.1
 
 ## References
