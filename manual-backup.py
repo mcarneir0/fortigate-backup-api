@@ -183,7 +183,6 @@ def backup(fgt):
     try:
 
         bkp_data = req.post(url, headers={'Authorization' : 'Bearer ' + str(fgt["token"])})
-        print(bkp_data)
 
     except Exception as e:
         global error_message
