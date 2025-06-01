@@ -26,7 +26,7 @@ This simple script makes it easy to perform backups of multiple Fortigate firewa
 
 #### Requirements
 
-- [Python 3.6](https://www.python.org/downloads/) or newer
+- [Python 3.8](https://www.python.org/downloads/) or newer
 - [Requests](https://pypi.org/project/requests/) module
 
 Clone the project
@@ -165,10 +165,12 @@ Now close the CLI, delete the temporary user profile and you're good to go.
 
 ## Support for
 
-- Python 3.6.8 / 3.10.x / 3.11.x / 3.12.x
-- FortiOS 6.0.x / 6.2.x / 7.0.x / 7.2.x / 7.4.5 / 7.6.1
+- Python 3.8.x / 3.10.x / 3.11.x / 3.12.x / 3.13.x
+- FortiOS 6.0.x / 6.2.x / 7.0.x / 7.2.x / 7.4.x / 7.6.x
 
 ## Changelog
+
+- 2025/06/01: Updated `requests` library to 2.32.3 and tested on Python 3.13. Dropped support for Python 3.6.
 
 - 2024/10/12: Utilise authorisation bearer header instead of old method of inserting API key into URL, as mentioned in [this forum thread](https://community.fortinet.com/t5/FortiGate/Technical-Tip-Configuring-FortiGate-7-4-5-to-Allow-access-token/ta-p/357228).
   - Thanks to [@wintermute000](https://github.com/wintermute000)
