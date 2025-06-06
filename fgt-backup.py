@@ -1,11 +1,17 @@
 import logging
+import argparse
 import utils.io as io
 import utils.fortigate as fgt_util
+
+# Parse command line arguments
+parser = argparse.ArgumentParser()
+parser.add_argument('-d', '--debug', action='store_true', help='Enable debug logging')
+args = parser.parse_args()
 
 def main():
     io.create_folders()
     io.setup_logging()
-    logging.getLogger().setLevel(logging.INFO)
+    logging.getLogger().setLevel(logging.DEBUG if args.debug else logging.INFO)
 
     # Lists to store successful and failed backups
     fgt_ok = []
