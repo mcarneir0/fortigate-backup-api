@@ -18,7 +18,6 @@ This simple script makes it easy to perform backups of several Fortigate firewal
   2. [Create REST API user](#2-create-a-new-rest-api-admin)
   3. [_Super_admin_ permission](#3-grant-super_admin-permissions-to-the-user)
 - [Support for](#support-for)
-- [Changelog](#changelog)
 - [References](#references)
 - [License](#license)
 
@@ -173,14 +172,6 @@ Close the CLI and you're good to go.
 
 - Python 3.8.x / 3.10.x / 3.11.x / 3.12.x / 3.13.x
 - FortiOS 6.0.x / 6.2.x / 7.0.x / 7.2.x / 7.4.x / 7.6.x
-
-## Changelog
-
-- 2025/06/01: Updated `requests` library to 2.32.3 and tested on Python 3.13. Dropped support for Python 3.6.
-
-- 2024/10/12: Utilise authorisation bearer header instead of old method of inserting API key into URL, as mentioned in [this forum thread](https://community.fortinet.com/t5/FortiGate/Technical-Tip-Configuring-FortiGate-7-4-5-to-Allow-access-token/ta-p/357228).
-  - Thanks to [@wintermute000](https://github.com/wintermute000)
-  - See [#2](https://github.com/mcarneir0/fortigate-backup-api/pull/2) and [#3](https://github.com/mcarneir0/fortigate-backup-api/pull/3)
 
 ## References
 
